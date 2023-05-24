@@ -1,0 +1,45 @@
+#card {
+    -fx-pref-width: 100px;
+    -fx-pref-height: 150px;
+    -fx-background-color: yellow;
+}
+
+#plant {
+    -fx-pref-width: 100px;
+    -fx-pref-height: 100px;
+    -fx-background-color: green;
+}
+
+#zombie {
+    -fx-pref-width: 100px;
+    -fx-pref-height: 100px;
+    -fx-background-color: red;
+}
+
+#sun {
+    -fx-pref-width: 100px;
+    -fx-pref-height: 100px;
+    -fx-background-color: orange;
+}
+
+#bullet {
+    -fx-pref-width: 100px;
+    -fx-pref-height: 100px;
+    -fx-background-color: blue;
+}
+
+#shovel {
+    -fx-pref-width: 100px;
+    -fx-pref-height: 150px;
+    -fx-background-color: brown;
+}
+
+#state {
+    -fx-pref-width: 1000px;
+    -fx-pref-height: 150px;
+    -fx-background-color: grey;
+}
+
+.root {
+    -fx-background-color: white;
+}

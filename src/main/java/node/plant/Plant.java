@@ -86,7 +86,7 @@ public abstract class Plant {
         label = new Label();
 //        Image image = new Image(Objects.requireNonNull(Plant.class.getResourceAsStream(Url)), 100, 100, false, false);
 //        label.setGraphic(new ImageView(image));
-        label.setText("P");
+        label.setText(forName(kind));
         label.setId("plant");
 
         tooltip = new Tooltip();

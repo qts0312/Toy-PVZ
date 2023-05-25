@@ -58,7 +58,7 @@ public abstract class Zombie {
         this.label = new Label();
 //        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(Url)), 100, 100, false, false);
 //        label.setGraphic(new ImageView(image));
-        label.setText("Z");
+        label.setText(forName(kind));
         label.setId("zombie");
 
         tooltip = new Tooltip();

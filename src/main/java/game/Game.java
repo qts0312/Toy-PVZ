@@ -49,7 +49,7 @@ public class Game {
         state = new Pane();
         state.setId("state");
         addNode(state, 0, 0);
-
+        
         cardsInit();
         shovelInit();
         stateInit();

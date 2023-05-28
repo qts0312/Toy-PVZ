@@ -1,14 +1,13 @@
 package strategy;
 
-public class Default extends Strategy {
-
-    public Default() {
-        super(0);
+public class Faster extends Strategy {
+    public Faster() {
+        super(1);
     }
 
     @Override
     public int sunTick(int time) {
-        return 50;
+        return 80;
     }
 
     @Override
@@ -18,7 +17,7 @@ public class Default extends Strategy {
 
     @Override
     public int zombieTick(int time) {
-        return time > 150 ? 50 : 80;
+        return time > 600 ? 30 : 50;
     }
 
     @Override
@@ -33,6 +32,6 @@ public class Default extends Strategy {
 
     @Override
     public int award() {
-        return 50;
+        return 100;
     }
 }

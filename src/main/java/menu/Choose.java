@@ -9,15 +9,17 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import strategy.Strategy;
 
+import java.util.ArrayList;
+
 public class Choose {
-    public static final int NUM = 3;
+    public static final int NUM = 2;
     public static int ALLOW;
 
     static {
         ALLOW = 0;
     }
 
-    public Choose(Stage primaryStage) {
+    public Choose(Stage primaryStage, ArrayList<Integer> cards) {
         GridPane root = new GridPane();
         root.setHgap(10);
         root.setVgap(10);
@@ -34,7 +36,7 @@ public class Choose {
             button.setOnMouseClicked(event -> {
                 if (integer <= ALLOW) {
                     primaryStage.setScene(null);
-                    new Game(primaryStage, Strategy.getInstance(0));
+                    new Game(primaryStage, Strategy.getInstance(integer), cards);
                 }
             });
             root.add(button, 0, i);

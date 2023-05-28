@@ -1,5 +1,6 @@
 package game;
 
+import database.Info;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.geometry.Insets;
@@ -15,6 +16,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import menu.Choose;
 import menu.Menu;
+import menu.Setting;
 import node.bullet.Bullet;
 import node.plant.Plant;
 import node.zombie.Zombie;
@@ -27,6 +29,8 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Game {
+    public static final int BONUS = 50;
+
     private final Stage stage;
     public Pane root;
     public Strategy strategy;
@@ -37,11 +41,13 @@ public class Game {
     public int clock;
     public Sun sun;
     public int[] numLine = {0, 0, 0, 0, 0, 0};
+    private final ArrayList<Integer> cards;
 
-    public Game(Stage primaryStage, Strategy strategy) {
+    public Game(Stage primaryStage, Strategy strategy, ArrayList<Integer> cards) {
         root = new Pane();
         this.strategy = strategy;
         this.stage = primaryStage;
+        this.cards = cards;
         plants = new Manager<>(true);
         zombies = new Manager<>(false);
         bullets = new Manager<>(false);
@@ -95,9 +101,10 @@ public class Game {
 
     private void cardsInit() {
         for (int i = 0; i < Card.CARDSNUM; ++ i) {
-            Card card = new Card(this, i);
+            int kind = cards.get(i);
+            Card card = new Card(this, kind);
             card.setId("card");
-            card.setText("C" + i);
+            card.setText("C" + kind);
             newNode(card, 100 * i, 0, state);
         }
     }
@@ -222,6 +229,9 @@ public class Game {
     private void winHandle() {
         timeline.stop();
         Choose.ALLOW = strategy.getLevel() + 1;
+        Setting.entry.level += Choose.ALLOW;
+        Setting.entry.money += strategy.award();
+        Info.updateEntry(Setting.entry);
 
         GridPane win = new GridPane();
         win.setHgap(10);
@@ -235,19 +245,15 @@ public class Game {
         Button ret = new Button("Return");
         ret.setId("ret");
         ret.setOnAction(e -> {
-            stage.close();
-            try {
-                new Menu().start(new Stage());
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
+            stage.setScene(null);
+            new Setting(stage);
         });
 
         Button next = new Button("Next");
         next.setId("next");
         next.setOnAction(e -> {
             stage.setScene(null);
-            new Game(stage, Strategy.getInstance(0));
+            new Game(stage, Strategy.getInstance(0), cards);
         });
 
         win.add(label, 0, 0);
@@ -276,19 +282,15 @@ public class Game {
         Button ret = new Button("Return");
         ret.setId("ret");
         ret.setOnAction(e -> {
-            stage.close();
-            try {
-                new Menu().start(new Stage());
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
+            stage.setScene(null);
+            new Setting(stage);
         });
 
         Button replay = new Button("Replay");
         replay.setId("replay");
         replay.setOnAction(e -> {
             stage.setScene(null);
-            new Game(stage, strategy);
+            new Game(stage, strategy, cards);
         });
 
         lose.add(label, 0, 0);

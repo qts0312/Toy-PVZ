@@ -7,10 +7,15 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import strategy.Strategy;
+
+import java.util.Objects;
 
 public class Menu extends Application {
     @Override
@@ -23,7 +28,7 @@ public class Menu extends Application {
         root.setPadding(new Insets(20));
         root.setAlignment(Pos.CENTER);
 //        root.setBackground(new Background(new BackgroundImage(
-//                new Image((Objects.requireNonNull(Menu.class.getResourceAsStream("menu.png")))),
+//                new Image(Objects.requireNonNull(getClass().getResourceAsStream("menu.jpg"))),
 //                null, null, null, null)));
 
         Scene scene = new Scene(root, 1000, 750);
@@ -36,14 +41,14 @@ public class Menu extends Application {
         start.setMinWidth(120);
         start.setOnMouseClicked(event -> {
             primaryStage.setScene(null);
-            new Choose(primaryStage);
+            new Setting(primaryStage);
         });
 
         Button visitor = new Button("Visitor");
         visitor.setMinWidth(120);
         visitor.setOnMouseClicked(event -> {
             primaryStage.setScene(null);
-            new Game(primaryStage, Strategy.getInstance(0));
+            new Game(primaryStage, Strategy.getInstance(0), Setting.UCards());
         });
 
         VBox buttons = new VBox(30, start, visitor);

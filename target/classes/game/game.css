@@ -41,5 +41,5 @@
 }
 
 .root {
-    -fx-background-color: white;
+    -fx-background-image: url("game.jpg");
 }

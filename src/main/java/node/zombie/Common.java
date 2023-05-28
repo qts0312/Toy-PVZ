@@ -11,7 +11,7 @@ public class Common extends Zombie {
     public static final int LIFE = 100;
     public static final int SPEED = 50;
     public static final int DAMAGE = 20;
-    public static final String URL = "/resources/zombie_common.gif";
+    public static final String URL = "zombie_common.png";
 
     public Common(int time, Pos pos) {
         super(COMMON,

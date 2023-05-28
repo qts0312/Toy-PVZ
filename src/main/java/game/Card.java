@@ -7,7 +7,7 @@ import node.plant.Plant;
 import util.Pos;
 
 public class Card extends Label {
-    public static final int CARDSNUM = 4;
+    public static final int CARDSNUM = 5;
 
     public Card(Game game, int kind) {
         super();

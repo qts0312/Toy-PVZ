@@ -12,7 +12,7 @@ public class Squash extends Plant {
     public static final int DEMAGE = 100;
     public static final int SPEED = 0;
     public static final int RANGE = 0;
-    public static final String URL = "/resources/squash.gif";
+    public static final String URL = "squash.png";
 
     public Squash(int time, Pos pos) {
         super(SQUASH,

@@ -14,7 +14,7 @@ public class PeaShooter extends Plant {
     public static final int DEMAGE = 0;
     public static final int SPEED = 0;
     public static final int RANGE = 0;
-    public static final String URL = "/resources/peashooter.gif";
+    public static final String URL = "peashooter.png";
 
     public PeaShooter(int time, Pos pos) {
         super(PEASHOOTER,

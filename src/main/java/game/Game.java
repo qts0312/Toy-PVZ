@@ -2,23 +2,32 @@ package game;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import menu.Choose;
+import menu.Menu;
 import node.bullet.Bullet;
 import node.plant.Plant;
 import node.zombie.Zombie;
+import strategy.Default;
 import strategy.Strategy;
 import util.Manager;
 import util.Pos;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Game {
+    private final Stage stage;
     public Pane root;
     public Strategy strategy;
     public Manager<Pos, Plant> plants;
@@ -32,6 +41,7 @@ public class Game {
     public Game(Stage primaryStage, Strategy strategy) {
         root = new Pane();
         this.strategy = strategy;
+        this.stage = primaryStage;
         plants = new Manager<>(true);
         zombies = new Manager<>(false);
         bullets = new Manager<>(false);
@@ -44,7 +54,7 @@ public class Game {
 
         Scene scene = new Scene(root, 1000, 750);
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("game.css")).toExternalForm());
-        primaryStage.setScene(scene);
+        stage.setScene(scene);
 
         state = new Pane();
         state.setId("state");
@@ -54,7 +64,7 @@ public class Game {
         shovelInit();
         stateInit();
 
-        primaryStage.show();
+        stage.show();
 
         systemRoutine();
     }
@@ -123,8 +133,12 @@ public class Game {
         newNode(zombieIndicator, 600, 100, state);
     }
 
+    private Timeline timeline;
+
     private void systemRoutine() {
-        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(100), e -> {
+        timeline = new Timeline(new KeyFrame(Duration.millis(100), e -> {
+            winOrLose();
+
             if (clockOn(strategy.sunTick(clock), 0)) {
                 int x = randomGenerator(0, 8);
                 int y = randomGenerator(0, 5);
@@ -188,6 +202,104 @@ public class Game {
 
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
+    }
+
+    private void winOrLose() {
+        if (clock >= strategy.totalTime()) {
+            winHandle();
+            return;
+        }
+
+        ArrayList<Zombie> zombieList = this.zombies.getAll();
+        for (Zombie z: zombieList) {
+            if (z.getPos().getX() <= 0) {
+                loseHandle();
+                return;
+            }
+        }
+    }
+
+    private void winHandle() {
+        timeline.stop();
+        Choose.ALLOW = strategy.getLevel() + 1;
+
+        GridPane win = new GridPane();
+        win.setHgap(10);
+        win.setVgap(10);
+        win.setAlignment(javafx.geometry.Pos.CENTER);
+        win.setPadding(new Insets(25));
+
+        Label label = new Label("You Win!");
+        label.setId("win");
+
+        Button ret = new Button("Return");
+        ret.setId("ret");
+        ret.setOnAction(e -> {
+            stage.close();
+            try {
+                new Menu().start(new Stage());
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
+
+        Button next = new Button("Next");
+        next.setId("next");
+        next.setOnAction(e -> {
+            stage.setScene(null);
+            new Game(stage, Strategy.getInstance(0));
+        });
+
+        win.add(label, 0, 0);
+        win.add(ret, 0, 1);
+        win.add(next, 0, 2);
+
+        Scene scene = new Scene(win, 1000, 2750);
+        // scene.getStylesheets().add("win.css");
+
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private void loseHandle() {
+        timeline.stop();
+
+        GridPane lose = new GridPane();
+        lose.setHgap(10);
+        lose.setVgap(10);
+        lose.setAlignment(javafx.geometry.Pos.CENTER);
+        lose.setPadding(new Insets(25));
+
+        Label label = new Label("You Lose!");
+        label.setId("lose");
+
+        Button ret = new Button("Return");
+        ret.setId("ret");
+        ret.setOnAction(e -> {
+            stage.close();
+            try {
+                new Menu().start(new Stage());
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        });
+
+        Button replay = new Button("Replay");
+        replay.setId("replay");
+        replay.setOnAction(e -> {
+            stage.setScene(null);
+            new Game(stage, strategy);
+        });
+
+        lose.add(label, 0, 0);
+        lose.add(ret, 0, 1);
+        lose.add(replay, 0, 2);
+
+        Scene scene = new Scene(lose, 1000, 750);
+        // scene.getStylesheets().add("lose.css");
+
+        stage.setScene(scene);
+        stage.show();
     }
 
     private void debug(int cycle) {

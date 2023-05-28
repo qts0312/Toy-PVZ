@@ -12,7 +12,7 @@ public class WallNut extends Plant {
     public static final int DEMAGE = 0;
     public static final int SPEED = 0;
     public static final int RANGE = 0;
-    public static final String URL = "/resources/wallnut.gif";
+    public static final String URL = "wallnut.png";
 
     public WallNut(int time, Pos pos) {
         super(WALLNUT,

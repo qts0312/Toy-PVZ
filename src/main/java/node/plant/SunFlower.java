@@ -12,7 +12,7 @@ public class SunFlower extends Plant {
     public static final int DEMAGE = 0;
     public static final int SPEED = 0;
     public static final int RANGE = 0;
-    public static final String URL = "/resources/sunflower.gif";
+    public static final String URL = "sunflower.png";
 
     public SunFlower(int time, Pos pos) {
         super(SUNFLOWER,

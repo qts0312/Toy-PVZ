@@ -11,6 +11,12 @@ import strategy.Strategy;
 
 public class Choose {
     public static final int NUM = 3;
+    public static int ALLOW;
+
+    static {
+        ALLOW = 0;
+    }
+
     public Choose(Stage primaryStage) {
         GridPane root = new GridPane();
         root.setHgap(10);
@@ -26,8 +32,10 @@ public class Choose {
             button.setMinWidth(120);
             Integer integer = i;
             button.setOnMouseClicked(event -> {
-                primaryStage.setScene(null);
-                new Game(primaryStage, Strategy.getInstance(integer));
+                if (integer <= ALLOW) {
+                    primaryStage.setScene(null);
+                    new Game(primaryStage, Strategy.getInstance(0));
+                }
             });
             root.add(button, 0, i);
         }

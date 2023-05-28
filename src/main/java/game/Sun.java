@@ -47,7 +47,7 @@ public class Sun {
 //        sun.setGraphic(new ImageView(image));
 
         game.addNode(sun, x, y);
-        sun.setOnMouseClicked(event -> {
+        sun.setOnMouseEntered(event -> {
             game.removeNode(sun);
             addSuns(SUNVALUE);
             suns.set(index(x, y), false);

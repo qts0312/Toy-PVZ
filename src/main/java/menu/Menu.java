@@ -1,19 +1,16 @@
 package menu;
 
+import game.Game;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
-import java.util.Objects;
+import strategy.Strategy;
 
 public class Menu extends Application {
     @Override
@@ -42,12 +39,14 @@ public class Menu extends Application {
             new Choose(primaryStage);
         });
 
-        Button settings = new Button("Settings");
-        settings.setMinWidth(120);
-        settings.setOnMouseClicked(event -> {
-            // TODO: Settings
+        Button visitor = new Button("Visitor");
+        visitor.setMinWidth(120);
+        visitor.setOnMouseClicked(event -> {
+            primaryStage.setScene(null);
+            new Game(primaryStage, Strategy.getInstance(0));
         });
-        VBox buttons = new VBox(30, start, settings);
+
+        VBox buttons = new VBox(30, start, visitor);
         buttons.setAlignment(Pos.CENTER);
 
         root.add(label, 0, 0);

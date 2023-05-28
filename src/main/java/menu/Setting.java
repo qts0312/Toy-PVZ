@@ -137,13 +137,19 @@ public class Setting {
         });
 
         CheckBox cherrybomb = new CheckBox("Cherrybomb");
-        cherrybomb.setOnAction(null);
+        cherrybomb.setOnAction(event -> {
+            cherrybomb.setSelected(false);
+        });
 
         CheckBox jalapeno = new CheckBox("Jalapeno");
-        jalapeno.setOnAction(null);
+        jalapeno.setOnAction(event -> {
+            jalapeno.setSelected(false);
+        });
 
         CheckBox melonpult = new CheckBox("Melonpult");
-        melonpult.setOnAction(null);
+        melonpult.setOnAction(event -> {
+            melonpult.setSelected(false);
+        });
 
         addNode(peashooter, 0, 100);
         addNode(wallnut, 0, 150);
@@ -211,6 +217,10 @@ public class Setting {
                             break;
                     }
                     update();
+                    Info.updateEntry(entry);
+
+                    message.setText("You buy this card successfully");
+                    message.setTextFill(javafx.scene.paint.Color.GREEN);
                 } else {
                     message.setText("You don't have enough money");
                     message.setTextFill(javafx.scene.paint.Color.RED);

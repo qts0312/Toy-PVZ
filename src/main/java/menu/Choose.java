@@ -12,7 +12,7 @@ import strategy.Strategy;
 import java.util.ArrayList;
 
 public class Choose {
-    public static final int NUM = 2;
+    public static final int NUM = 3;
     public static int ALLOW;
 
     static {

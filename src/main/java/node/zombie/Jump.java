@@ -29,10 +29,12 @@ public class Jump extends Zombie {
 
         if (plant != null) {
             if (canJump) {
-                getPos().setX(getPos().getX() - 100);
+                getPos().setX(getPos().getX() - 150);
+                getLabel().setLayoutX(getPos().getX());
                 canJump = false;
             }
             else{
+                getLabel().setLayoutX(getPos().getX());
                 setCanMove(false);
                 plant.setLife(-getDamage());
                 if (plant.isDead()) {
@@ -41,6 +43,8 @@ public class Jump extends Zombie {
                     setCanMove(true);
                 }
             }
+        } else {
+            getLabel().setLayoutX(getPos().getX());
         }
     }
 }

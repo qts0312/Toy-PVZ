@@ -1,6 +1,7 @@
 package database;
 
 import java.sql.*;
+import java.util.Objects;
 
 /*
  * To use this module, you need to create MySQL database locally.
@@ -9,7 +10,7 @@ public class Info {
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final String URL = "jdbc:mysql://localhost:3306/pvz_db";
     private static final String USER = "root";
-    private static final String PASSWORD = "password";
+    private static final String PASSWORD = "pku170730";
 
     private static Connection conn;
 
@@ -127,6 +128,9 @@ public class Info {
     }
 
     public static void updateEntry(Entry entry) {
+        if (Objects.equals(entry.userId, "default"))
+            return;
+
         openDb();
 
         try {

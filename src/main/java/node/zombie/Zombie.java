@@ -18,6 +18,7 @@ import java.util.Objects;
 public abstract class Zombie {
     public static final int COMMON = 0;
     public static final int JUMP = 1;
+    public static final int STRONG = 2;
 
     private static Game game;
 
@@ -126,7 +127,8 @@ public abstract class Zombie {
     public void move() {
         if (canMove) {
             pos.setX(pos.getX() - speed);
-            label.setLayoutX(pos.getX());
+            if (kind != JUMP)
+                label.setLayoutX(pos.getX());
         }
     }
 
@@ -136,6 +138,8 @@ public abstract class Zombie {
                 return new Common(time, pos);
             case JUMP:
                 return new Jump(time, pos);
+            case STRONG:
+                return new Strong(time, pos);
             default:
                 return null;
         }
@@ -147,6 +151,8 @@ public abstract class Zombie {
                 return "CommonZombie ";
             case JUMP:
                 return "JumpZombie";
+            case STRONG:
+                return "StrongZombie";
             default:
                 return null;
         }

@@ -33,7 +33,6 @@ public class PeaShooter extends Plant {
             Bullet common = Bullet.getInstance(Bullet.COMMON, time, pos, this);
 
             if (common != null) {
-                System.out.println(time + " " + getTime());
                 getGame().bullets.add(new Manager.Key(time, getTime()), common);
             }
         }

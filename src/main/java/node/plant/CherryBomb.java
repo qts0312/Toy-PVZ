@@ -6,16 +6,16 @@ import util.Pos;
 
 import java.util.ArrayList;
 
-public class Squash extends Plant {
-    public static final int LIFE = 0;
-    public static final int COST = 50;
-    public static final int DEMAGE = 200;
+public class CherryBomb extends Plant {
+public static final int LIFE = 0;
+    public static final int COST = 150;
+    public static final int DEMAGE = 100;
     public static final int SPEED = 0;
     public static final int RANGE = 0;
-    public static final String URL = "squash.png";
+    public static final String URL = "cherrybomb.png";
 
-    public Squash(int time, Pos pos) {
-        super(SQUASH,
+    public CherryBomb(int time, Pos pos) {
+        super(CHERRYBOMB,
                 LIFE,
                 COST,
                 new Attack(DEMAGE, SPEED, RANGE),
@@ -34,10 +34,10 @@ public class Squash extends Plant {
         ArrayList<Zombie> zombies = getGame().zombies.getAll();
         Pos pos = getPos();
 
-        boolean bomb = false;
-        for (Zombie z : zombies) {
-            if (pos.overlap(z.getPos())) {
-                bomb = true;
+        getGame().plants.remove(getPos());
+        getGame().removeNode(getLabel());
+        for (Zombie z: zombies) {
+            if (pos.distance(z.getPos()) <= 2 * Pos.CELL_WIDTH) {
                 z.setLife(-getAttack().getDamage());
                 if (z.isDead()) {
                     getGame().zombies.remove(new Manager.Key(z.getTime()));
@@ -45,11 +45,6 @@ public class Squash extends Plant {
                     getGame().numLine[z.getLine()]--;
                 }
             }
-        }
-
-        if (bomb) {
-            getGame().plants.remove(pos);
-            getGame().removeNode(getLabel());
         }
     }
 }

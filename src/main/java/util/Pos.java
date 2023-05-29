@@ -60,6 +60,13 @@ public class Pos {
                 Math.abs(Y - pos.getY()) < CELL_HEIGHT;
     }
 
+    /*
+     * Manhattan distance
+     */
+    public int distance(Pos pos) {
+        return Math.max(Math.abs(X - pos.getX()), Math.abs(Y - pos.getY()));
+    }
+
     @Override
     public String toString() {
         return "(" + X + ", " + Y + ")";

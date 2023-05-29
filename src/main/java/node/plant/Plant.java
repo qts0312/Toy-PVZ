@@ -20,6 +20,7 @@ public abstract class Plant {
     public static final int WALLNUT = 1;
     public static final int SUNFLOWER = 2;
     public static final int SQUASH = 3;
+    public static final int CHERRYBOMB = 4;
 
     private static Game game;
 
@@ -163,6 +164,8 @@ public abstract class Plant {
                 return new SunFlower(time, pos);
             case Plant.SQUASH:
                 return new Squash(time, pos);
+            case Plant.CHERRYBOMB:
+                return new CherryBomb(time, pos);
         }
         return null;
     }
@@ -177,6 +180,8 @@ public abstract class Plant {
                 return "SunFlower";
             case Plant.SQUASH:
                 return "Squash";
+            case Plant.CHERRYBOMB:
+                return "CherryBomb";
         }
         return null;
     }

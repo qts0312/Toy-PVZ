@@ -3,6 +3,7 @@ package strategy;
 public abstract class Strategy {
     public static final int DEFAULT = 0;
     public static final int FASTER = 1;
+    public static final int TEST = 2;
 
     private final int level;
 
@@ -30,6 +31,8 @@ public abstract class Strategy {
                 return new Default();
             case FASTER:
                 return new Faster();
+            case TEST:
+                return new Test();
             default:
                 return null;
         }

@@ -138,7 +138,14 @@ public class Setting {
 
         CheckBox cherrybomb = new CheckBox("Cherrybomb");
         cherrybomb.setOnAction(event -> {
-            cherrybomb.setSelected(false);
+            if (cherrybomb.isSelected()) {
+                if (entry.cherrybomb > 0 && kinds.size() < CRADSBOUND)
+                    kinds.add(Plant.CHERRYBOMB);
+                else
+                    cherrybomb.setSelected(false);
+            } else {
+                kinds.remove((Integer) Plant.CHERRYBOMB);
+            }
         });
 
         CheckBox jalapeno = new CheckBox("Jalapeno");
@@ -171,7 +178,7 @@ public class Setting {
                 "Wallnut $50",
                 "Sunflower $100",
                 "Squash $200",
-                "Cherrybomb $?",
+                "Cherrybomb $300",
                 "Jalapeno $?",
                 "Melonpult $?"
         ));
@@ -191,6 +198,10 @@ public class Setting {
                 case "Squash $200":
                     needBuy.set(entry.squash == 0);
                     cost.set(200);
+                    break;
+                case "Cherrybomb $300":
+                    needBuy.set(entry.cherrybomb == 0);
+                    cost.set(300);
                     break;
                 default:
                     needBuy.set(true);
@@ -212,6 +223,9 @@ public class Setting {
                             entry.sunflower = 1;
                         case "Squash $200":
                             entry.squash = 1;
+                            break;
+                        case "Cherrybomb $300":
+                            entry.cherrybomb = 1;
                             break;
                         default:
                             break;

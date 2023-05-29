@@ -145,7 +145,6 @@ public class Game {
     private void systemRoutine() {
         timeline = new Timeline(new KeyFrame(Duration.millis(100), e -> {
             winOrLose();
-
             if (clockOn(strategy.sunTick(clock), 0)) {
                 int x = randomGenerator(0, 8);
                 int y = randomGenerator(0, 5);
@@ -155,7 +154,8 @@ public class Game {
 
             if (clockOn(strategy.zombieTick(clock), 0)) {
                 int y = randomGenerator(0, 5);
-                Zombie zombie = Zombie.getInstance(strategy.zombieKind(clock), clock, new Pos(950, y * 100 + 150));
+                int kind = strategy.zombieKind(clock);
+                Zombie zombie = Zombie.getInstance(kind, clock, new Pos(950, y * 100 + 150));
 
                 if (zombie != null) {
                     numLine[y] ++;
@@ -182,7 +182,11 @@ public class Game {
                             p.routine(clock);
                         break;
                     case Plant.SQUASH:
-                        if (clockOn(20, p.getTime()))
+                        if (clockOn(10, 0)) // this time routine follow zombie's step
+                            p.routine(clock);
+                        break;
+                    case Plant.CHERRYBOMB:
+                        if (clockOn(25, 0))
                             p.routine(clock);
                         break;
                     default:
@@ -228,7 +232,7 @@ public class Game {
 
     private void winHandle() {
         timeline.stop();
-        Choose.ALLOW = strategy.getLevel() + 1;
+        Choose.ALLOW = Math.max(Choose.ALLOW, strategy.getLevel() + 1);
         Setting.entry.level += Choose.ALLOW;
         Setting.entry.money += strategy.award();
         Info.updateEntry(Setting.entry);
@@ -253,7 +257,7 @@ public class Game {
         next.setId("next");
         next.setOnAction(e -> {
             stage.setScene(null);
-            new Game(stage, Strategy.getInstance(0), cards);
+            new Game(stage, Strategy.getInstance(strategy.getLevel() + 1), cards);
         });
 
         win.add(label, 0, 0);
@@ -305,13 +309,12 @@ public class Game {
     }
 
     private void debug(int cycle) {
-        if (clockOn(cycle, 0)) {
+        if (clockOn(cycle, 0)){
             System.out.println("clock: " + clock);
             System.out.println("sun: " + sun.getSun());
             System.out.println("plants: " + plants.getAll().size());
             System.out.println("zombies: " + zombies.getAll().size());
             System.out.println("bullets: " + bullets.getAll().size());
-            System.out.println();
         }
     }
 }

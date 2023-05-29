@@ -47,7 +47,7 @@ class ShovelHandler implements EventHandler<MouseEvent> {
                 if (plant != null) {
                     game.removeNode(plant.getLabel());
                     game.plants.remove(plant.getPos());
-                    game.sun.addSuns(plant.getCost());
+                    game.sun.addSuns(plant.getCost() / 2);
                 }
                 node.setTranslateX(0);
                 node.setTranslateY(0);

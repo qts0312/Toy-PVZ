@@ -54,6 +54,11 @@ public class Manager<K, V> {
             }
             return false;
         }
+
+        @Override
+        public String toString() {
+            return "(main key=" + key + ", add key=" + add + ")";
+        }
     }
 
     public Manager(boolean unique) {

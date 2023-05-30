@@ -29,8 +29,6 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Game {
-    public static final int BONUS = 50;
-
     private final Stage stage;
     public Pane root;
     public Strategy strategy;

@@ -1,7 +1,7 @@
 package strategy;
 
 public class Test extends Strategy {
-    private int[] zombieNum = {10, 10, 6};
+    private int[] zombieNum = {12, 12, 7};
 
     public Test() {
         super(2);
@@ -13,10 +13,7 @@ public class Test extends Strategy {
 
     @Override
     public int sunTick(int time) {
-        if (time <= 600)
-            return 50;
-        else
-            return 30;
+        return 50;
     }
 
     @Override
@@ -24,7 +21,7 @@ public class Test extends Strategy {
         if (time <= 600)
             return 60;
         else
-            return 40;
+            return 30;
     }
 
     private int randZombieKind(int max) {

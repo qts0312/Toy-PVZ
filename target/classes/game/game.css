@@ -1,3 +1,7 @@
+.label {
+    -fx-alignment: center;
+}
+
 #card {
     -fx-pref-width: 100px;
     -fx-pref-height: 150px;

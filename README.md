@@ -33,10 +33,11 @@ In this section, we just introduce the modules of our code for kind TA.
 * `strategy`: the design of different levels(you can consider `Test.java` as a template).
 * `util`: utils of the project.
 
-## Materials
+## Branches
 
-All the pictures are obtained by `Taobao`. These materials are not created by ourselves, 
-and we will try to create our pictures in the future.
+Till now, we have two branches:
+* `main`: the main branch, access all the parts of the project.
+* `develop`: without database ops, for developers to test even if they don't have a database.
 
 ## Problems
 

@@ -32,7 +32,19 @@ public class Setting {
     public static Info.Entry entry = null;
 
     static {
-        entry = Info.getEntry("default");
+        // entry = Info.getEntry("default");
+        entry = new Info.Entry(
+                "default",
+                100,
+                10000,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1,
+                1
+        );
     }
 
 
@@ -58,7 +70,7 @@ public class Setting {
     private Label money;
 
     private void settingInit() {
-        inputInit();
+        // inputInit();
         moneyInit();
         cardsInit();
         shopInit();

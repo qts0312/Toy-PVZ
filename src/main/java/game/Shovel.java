@@ -40,9 +40,9 @@ class ShovelHandler implements EventHandler<MouseEvent> {
                 node.setTranslateY(event.getSceneY() - Y);
                 break;
             case "MOUSE_RELEASED":
-                double x = node.getLayoutX() + node.getTranslateX() + 50;
-                double y = node.getLayoutY() + node.getTranslateY() + 50;
-                Pos pos = new Pos((int)(x - x % 100), (int)(y - (y - 150) % 100));
+                double x = node.getLayoutX() + node.getTranslateX() + (double) Pos.CELL_WIDTH / 2;
+                double y = node.getLayoutY() + node.getTranslateY() + (double) Pos.CELL_HEIGHT / 2;
+                Pos pos = new Pos((int)(x - (x - 250) % Pos.CELL_WIDTH), (int)(y - (y - 85) % Pos.CELL_HEIGHT));
                 Plant plant = game.plants.get(p -> pos.overlap(p.getPos()));
                 if (plant != null) {
                     game.removeNode(plant.getLabel());

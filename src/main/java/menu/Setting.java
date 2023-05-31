@@ -5,12 +5,17 @@ import javafx.collections.FXCollections;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import node.plant.*;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -37,7 +42,8 @@ public class Setting {
 
         settingInit();
 
-        Scene scene = new Scene(root, 1000, 750);
+        Scene scene = new Scene(root, 800, 600);
+        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("setting.css")).toExternalForm());
 
         stage.setScene(scene);
         stage.show();
@@ -64,10 +70,8 @@ public class Setting {
 
         TextField input = new TextField();
         input.setPromptText("Input your user id");
-        input.setMinWidth(500);
 
         Button submit = new Button("Submit");
-        submit.setMinWidth(100);
         submit.setOnMouseClicked(event -> {
             String userId = input.getText();
             entry = Info.getEntry(userId);
@@ -79,97 +83,123 @@ public class Setting {
         });
 
         hBox.getChildren().addAll(input, submit);
-        addNode(hBox, 0, 0);
+        addNode(hBox, 72, 23);
     }
 
     private void moneyInit() {
         money = new Label("Money: " + entry.money);
-        addNode(money, 0, 50);
+        money.setId("money");
+        addNode(money, 450 , 95);
     }
 
     private void cardsInit() {
-        CheckBox peashooter = new CheckBox("Peashooter");
-        peashooter.setOnAction(event -> {
-            if (peashooter.isSelected()) {
+        CheckBox peashooterBox = new CheckBox();
+        peashooterBox.setOnAction(event -> {
+            if (peashooterBox.isSelected()) {
                 if (entry.peashooter > 0 && kinds.size() < CRADSBOUND)
                     kinds.add(Plant.PEASHOOTER);
                 else
-                    peashooter.setSelected(false);
+                    peashooterBox.setSelected(false);
             } else {
                 kinds.remove((Integer) Plant.PEASHOOTER);
             }
         });
+        Label peashooterLabel = new Label();
+        Image peashooterImage = new Image(Objects.requireNonNull(Setting.class.getResourceAsStream("images/PeaShooter.png")));
+        peashooterLabel.setGraphic(new ImageView(peashooterImage));
+        peashooterLabel.setId("card");
 
-        CheckBox wallnut = new CheckBox("Wallnut");
-        wallnut.setOnAction(event -> {
-            if (wallnut.isSelected()) {
+        CheckBox wallnutBox = new CheckBox();
+        wallnutBox.setOnAction(event -> {
+            if (wallnutBox.isSelected()) {
                 if (entry.wallnut > 0 && kinds.size() < CRADSBOUND)
                     kinds.add(Plant.WALLNUT);
                 else
-                    wallnut.setSelected(false);
+                    wallnutBox.setSelected(false);
             } else {
                 kinds.remove((Integer) Plant.WALLNUT);
             }
         });
+        Label wallnutLabel = new Label();
+        Image wallnutImage = new Image(Objects.requireNonNull(Setting.class.getResourceAsStream("images/WallNut.png")));
+        wallnutLabel.setGraphic(new ImageView(wallnutImage));
+        wallnutLabel.setId("card");
 
-        CheckBox sunflower = new CheckBox("Sunflower");
-        sunflower.setOnAction(event -> {
-            if (sunflower.isSelected()) {
+        CheckBox sunflowerBox = new CheckBox();
+        sunflowerBox.setOnAction(event -> {
+            if (sunflowerBox.isSelected()) {
                 if (entry.sunflower > 0 && kinds.size() < CRADSBOUND)
                     kinds.add(Plant.SUNFLOWER);
                 else
-                    sunflower.setSelected(false);
+                    sunflowerBox.setSelected(false);
             } else {
                 kinds.remove((Integer) Plant.SUNFLOWER);
             }
         });
+        Label sunflowerLabel = new Label();
+        Image sunflowerImage = new Image(Objects.requireNonNull(Setting.class.getResourceAsStream("images/SunFlower.png")));
+        sunflowerLabel.setGraphic(new ImageView(sunflowerImage));
+        sunflowerLabel.setId("card");
 
-        CheckBox squash = new CheckBox("Squash");
-        squash.setOnAction(event -> {
-            if (squash.isSelected()) {
+        CheckBox squashBox = new CheckBox();
+        squashBox.setOnAction(event -> {
+            if (squashBox.isSelected()) {
                 if (entry.squash > 0 && kinds.size() < CRADSBOUND)
                     kinds.add(Plant.SQUASH);
                 else
-                    squash.setSelected(false);
+                    squashBox.setSelected(false);
             } else {
                 kinds.remove((Integer) Plant.SQUASH);
             }
         });
+        Label squashLabel = new Label();
+        Image squashImage = new Image(Objects.requireNonNull(Setting.class.getResourceAsStream("images/Squash.png")));
+        squashLabel.setGraphic(new ImageView(squashImage));
+        squashLabel.setId("card");
 
-        CheckBox cherrybomb = new CheckBox("Cherrybomb");
-        cherrybomb.setOnAction(event -> {
-            if (cherrybomb.isSelected()) {
+        CheckBox cherrybombBox = new CheckBox();
+        cherrybombBox.setOnAction(event -> {
+            if (cherrybombBox.isSelected()) {
                 if (entry.cherrybomb > 0 && kinds.size() < CRADSBOUND)
                     kinds.add(Plant.CHERRYBOMB);
                 else
-                    cherrybomb.setSelected(false);
+                    cherrybombBox.setSelected(false);
             } else {
                 kinds.remove((Integer) Plant.CHERRYBOMB);
             }
         });
+        Label cherrybombLabel = new Label();
+        Image cherrybombImage = new Image(Objects.requireNonNull(Setting.class.getResourceAsStream("images/CherryBomb.png")));
+        cherrybombLabel.setGraphic(new ImageView(cherrybombImage));
+        cherrybombLabel.setId("card");
 
-        CheckBox jalapeno = new CheckBox("Jalapeno");
-        jalapeno.setOnAction(event -> {
-            jalapeno.setSelected(false);
+        CheckBox jalapenoBox = new CheckBox();
+        jalapenoBox.setOnAction(event -> {
+            jalapenoBox.setSelected(false);
         });
+        Label jalapenoLabel = new Label();
+        Image jalapenoImage = new Image(Objects.requireNonNull(Setting.class.getResourceAsStream("images/Jalapeno.png")));
+        jalapenoLabel.setGraphic(new ImageView(jalapenoImage));
+        jalapenoLabel.setId("card");
 
-        CheckBox melonpult = new CheckBox("Melonpult");
-        melonpult.setOnAction(event -> {
-            melonpult.setSelected(false);
-        });
-
-        addNode(peashooter, 0, 100);
-        addNode(wallnut, 0, 150);
-        addNode(sunflower, 0, 200);
-        addNode(squash, 0, 250);
-        addNode(cherrybomb, 0, 300);
-        addNode(jalapeno, 0, 350);
-        addNode(melonpult, 0, 400);
+        addNode(peashooterBox, 50, 95);
+        addNode(peashooterLabel, 80, 95);
+        addNode(wallnutBox, 50, 173);
+        addNode(wallnutLabel, 80, 173);
+        addNode(sunflowerBox, 50, 251);
+        addNode(sunflowerLabel, 80, 251);
+        addNode(squashBox, 50, 329);
+        addNode(squashLabel, 80, 329);
+        addNode(cherrybombBox, 50, 407);
+        addNode(cherrybombLabel, 80, 407);
+        addNode(jalapenoBox, 50, 485);
+        addNode(jalapenoLabel, 80, 485);
     }
 
     private void shopInit() {
         Label message = new Label("You can also buy cards in the shop");
         message.setTextFill(javafx.scene.paint.Color.GREEN);
+        message.setFont(Font.font("Arial", FontWeight.BOLD, 20));
         AtomicBoolean needBuy = new AtomicBoolean(false);
         AtomicInteger cost = new AtomicInteger();
 
@@ -245,9 +275,9 @@ public class Setting {
             }
         });
 
-        addNode(shop, 0, 500);
-        addNode(buy, 0, 550);
-        addNode(message, 0, 600);
+        addNode(shop, 500, 200);
+        addNode(buy, 650, 200);
+        addNode(message, 450, 300);
     }
 
     private void playInit() {
@@ -255,12 +285,10 @@ public class Setting {
         play.setMinWidth(100);
         play.setOnMouseClicked(event -> {
             stage.setScene(null);
-            while (kinds.size() < CRADSBOUND)
-                kinds.add(-1);
             new Choose(stage, kinds);
         });
 
-        addNode(play, 850, 700);
+        addNode(play, 650, 500);
     }
 
     private void update() {

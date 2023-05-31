@@ -16,6 +16,8 @@ import java.util.Objects;
  * And controls the plant's life, position, and display.
  */
 public abstract class Plant {
+    public static final double Q = 0.75;
+
     public static final int PEASHOOTER = 0;
     public static final int WALLNUT = 1;
     public static final int SUNFLOWER = 2;
@@ -85,9 +87,13 @@ public abstract class Plant {
         this.pos = pos;
 
         label = new Label();
-//        Image image = new Image(Objects.requireNonNull(Plant.class.getResourceAsStream(Url)), 100, 100, false, false);
-//        label.setGraphic(new ImageView(image));
-        label.setText(forName(kind));
+        Image image = null;
+        if (kind != CHERRYBOMB)
+            image = new Image(Objects.requireNonNull(Plant.class.getResourceAsStream("images/" + Url)), Pos.CELL_WIDTH * Q, Pos.CELL_HEIGHT * Q, false, false);
+        else
+            image = new Image(Objects.requireNonNull(Plant.class.getResourceAsStream("images/" + Url)), Pos.CELL_WIDTH * Q, Pos.CELL_HEIGHT * 0.5, false, false);
+        label.setGraphic(new ImageView(image));
+//        label.setText(forName(kind));
         label.setId("plant");
 
         tooltip = new Tooltip();
@@ -116,7 +122,7 @@ public abstract class Plant {
     }
 
     public int getLine() {
-        return (pos.getY() - 150) / 100;
+        return (pos.getY() - 85) / Pos.CELL_HEIGHT;
     }
 
     public Label getLabel() {

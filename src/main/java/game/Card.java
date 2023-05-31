@@ -19,7 +19,7 @@ public class Card extends Label {
             if (plant != null && game.sun.afford(plant)) {
                 label = plant.getLabel();
                 label.addEventHandler(MouseEvent.ANY, new Handler(game, plant));
-                game.addNode(label, event.getSceneX() - 50, event.getSceneY() - 50);
+                game.addNode(label, event.getSceneX() - (double) Pos.CELL_WIDTH / 2, event.getSceneY() - (double) Pos.CELL_HEIGHT / 2);
             }
         });
     }
@@ -57,16 +57,16 @@ class Handler implements EventHandler<MouseEvent> {
                 Y = event.getSceneY();
                 break;
             case "MOUSE_RELEASED":
-                double x = plant.getLabel().getLayoutX() + 50;
-                double y = plant.getLabel().getLayoutY()  + 50;
+                double x = plant.getLabel().getLayoutX() + (double) Pos.CELL_WIDTH / 2;
+                double y = plant.getLabel().getLayoutY()  + (double) Pos.CELL_HEIGHT / 2;
                 if (inField(x, y)) {
                     canMove = false;
-                    int row = (int) ((y - 150) / Pos.CELL_HEIGHT);
-                    int col = (int) (x / Pos.CELL_WIDTH);
-                    plant.setPos(new Pos(col * Pos.CELL_WIDTH, row * Pos.CELL_HEIGHT + 150));
+                    int row = (int) ((y - 85) / Pos.CELL_HEIGHT);
+                    int col = (int) ((x - 250) / Pos.CELL_WIDTH);
+                    plant.setPos(new Pos(col * Pos.CELL_WIDTH + 250, row * Pos.CELL_HEIGHT + 85));
                     if (game.plants.add(plant.getPos(), plant)) {
-                        plant.getLabel().setLayoutX(col * Pos.CELL_WIDTH);
-                        plant.getLabel().setLayoutY(row * Pos.CELL_HEIGHT + 150);
+                        plant.getLabel().setLayoutX(plant.getPos().getX());
+                        plant.getLabel().setLayoutY(plant.getPos().getY());
                         game.sun.removeSuns(plant.getCost());
                         return;
                     }
@@ -77,6 +77,6 @@ class Handler implements EventHandler<MouseEvent> {
     }
 
     private boolean inField(double x, double y) {
-        return x >= 0 && x <= 1000 && y >= 150 && y <= 750;
+        return x >= 250 && x <= 250 + 9 * Pos.CELL_WIDTH && y >= 85 && y <= 85 + 5 * Pos.CELL_HEIGHT;
     }
 }

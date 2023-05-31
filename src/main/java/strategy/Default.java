@@ -1,6 +1,7 @@
 package strategy;
 
 public class Default extends Strategy {
+    private int zombieNum = 18;
 
     public Default() {
         super(0);
@@ -23,7 +24,7 @@ public class Default extends Strategy {
 
     @Override
     public int zombieKind(int time) {
-        return 0;
+        return zombieNum -- > 0 ? 0 : -1;
     }
 
     @Override

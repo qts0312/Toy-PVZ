@@ -14,7 +14,7 @@ public class PeaShooter extends Plant {
     public static final int DEMAGE = 0;
     public static final int SPEED = 0;
     public static final int RANGE = 0;
-    public static final String URL = "peashooter.png";
+    public static final String URL = "peashooter.gif";
 
     public PeaShooter(int time, Pos pos) {
         super(PEASHOOTER,
@@ -29,7 +29,7 @@ public class PeaShooter extends Plant {
     @Override
     public void routine(int time) {
         if (getGame().numLine[getLine()] > 0) {
-            Pos pos = new Pos(getPos().getX() + 50, getPos().getY());
+            Pos pos = new Pos(getPos().getX(), getPos().getY());
             Bullet common = Bullet.getInstance(Bullet.COMMON, time, pos, this);
 
             if (common != null) {

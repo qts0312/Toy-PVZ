@@ -5,9 +5,10 @@ import util.Pos;
 
 public class Strong extends Zombie {
     public static final int LIFE = 300;
-    public static final int SPEED = 25;
-    public static final int DAMAGE = 50;
-    public static final String URL = "strong.png";
+    public static final int SPEED = 1;
+    public static final int DAMAGE = 25;
+    public static final String URL = "strong.gif";
+    public static final String attackURL = "strong_attack.gif";
 
     public Strong(int time, Pos pos) {
         super(STRONG,
@@ -16,6 +17,7 @@ public class Strong extends Zombie {
                 DAMAGE,
                 time,
                 URL,
+                attackURL,
                 pos);
     }
 
@@ -32,6 +34,16 @@ public class Strong extends Zombie {
                 getGame().removeNode(plant.getLabel());
                 setCanMove(true);
             }
+        } else {
+            setCanMove(true);
         }
+    }
+
+    public static double transX(Pos pos) {
+        return pos.getX() - 45;
+    }
+
+    public static double transY(Pos pos) {
+        return pos.getY() - 12;
     }
 }

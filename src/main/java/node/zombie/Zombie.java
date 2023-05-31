@@ -40,6 +40,8 @@ public abstract class Zombie {
     private Label label;
     private Tooltip tooltip;
     private Pos pos;
+    private Image image;
+    private Image attackImage;
 
     public Zombie(int kind,
                   int life,
@@ -47,6 +49,7 @@ public abstract class Zombie {
                   int damage,
                   int time,
                   String Url,
+                  String attackUrl,
                   Pos pos) {
         this.kind = kind;
         this.life = life;
@@ -57,9 +60,24 @@ public abstract class Zombie {
         this.pos = pos;
 
         this.label = new Label();
-//        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(Url)), 100, 100, false, false);
-//        label.setGraphic(new ImageView(image));
-        label.setText(forName(kind));
+        Url = "images/" + Url;
+        attackUrl = "images/" + attackUrl;
+        switch (kind) {
+            case COMMON:
+                image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(Url)), 126, 110, false, false);
+                attackImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream(attackUrl)), 126, 110, false, false);
+                break;
+            case JUMP:
+                image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(Url)), 270, 180, false, false);
+                attackImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream(attackUrl)), 270, 180, false, false);
+                break;
+            case STRONG:
+                image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(Url)), 126, 110, false, false);
+                attackImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream(attackUrl)), 126, 110, false, false);
+                break;
+        }
+        label.setGraphic(new ImageView(image));
+//        label.setText(forName(kind));
         label.setId("zombie");
 
         tooltip = new Tooltip();
@@ -93,7 +111,7 @@ public abstract class Zombie {
     }
 
     public int getLine() {
-        return (pos.getY() - 150) / 100;
+        return (pos.getY() - 85) / Pos.CELL_HEIGHT;
     }
 
     public Label getLabel() {
@@ -110,6 +128,11 @@ public abstract class Zombie {
     }
 
     public void setCanMove(boolean canMove) {
+        if (this.canMove && !canMove) {
+            label.setGraphic(new ImageView(attackImage));
+        } else if (!this.canMove && canMove) {
+            label.setGraphic(new ImageView(image));
+        }
         this.canMove = canMove;
     }
 

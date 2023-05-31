@@ -7,12 +7,12 @@ import util.Pos;
 import java.util.ArrayList;
 
 public class Squash extends Plant {
-    public static final int LIFE = 0;
+    public static final int LIFE = 100;
     public static final int COST = 50;
     public static final int DEMAGE = 200;
     public static final int SPEED = 0;
     public static final int RANGE = 0;
-    public static final String URL = "squash.png";
+    public static final String URL = "squash.gif";
 
     public Squash(int time, Pos pos) {
         super(SQUASH,

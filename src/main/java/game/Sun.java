@@ -1,9 +1,13 @@
 package game;
 
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import node.plant.Plant;
+import util.Pos;
 
 import java.util.BitSet;
+import java.util.Objects;
 
 public class Sun {
     public static final int SUNVALUE = 100;
@@ -33,7 +37,7 @@ public class Sun {
     }
 
     private int index(double x, double y) {
-        return (int)(x / 100) + (int)((y - 150) / 100) * 20;
+        return (int)((x - Game.LEFT) / Pos.CELL_WIDTH) + (int)((y - Game.TOP) / Pos.CELL_HEIGHT) * 20;
     }
 
     public void createSuns(double x, double y) {
@@ -42,9 +46,9 @@ public class Sun {
 
         Label sun = new Label();
         sun.setId("sun");
-        sun.setFocusTraversable(true);
-//        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/sun.png")), 50, 50, false, false);
-//        sun.setGraphic(new ImageView(image));
+
+        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("images/sun.gif")), (double) Pos.CELL_WIDTH / 2, (double) Pos.CELL_HEIGHT / 2, false, false);
+        sun.setGraphic(new ImageView(image));
 
         game.addNode(sun, x, y);
         sun.setOnMouseEntered(event -> {

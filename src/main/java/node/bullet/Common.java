@@ -10,9 +10,9 @@ import util.Pos;
  * Common extends bullet
  */
 public class Common extends Bullet{
-    public static final int SPEED = 50;
+    public static final int SPEED = 30;
     public static final int DAMAGE = 10;
-    public static final String URL = "/resources/bullet_common.png";
+    public static final String URL = "common.gif";
 
     public Common(int time, Pos pos, Plant holder) {
         super(COMMON,
@@ -27,9 +27,10 @@ public class Common extends Bullet{
     @Override
     public void routine() {
         Pos pos = getPos();
-        Zombie zombie = getGame().zombies.get(z -> pos.overlap(z.getPos()));
+        Zombie zombie = getGame().zombies.get(z -> pos.distance(z.getPos()) < Pos.CELL_WIDTH);
 
-        if (zombie != null) {
+
+        if (zombie != null && pos.getX() - zombie.getPos().getX() > 20) {
             getGame().bullets.remove(new Manager.Key(getTime(), getHolder().getTime()));
             getGame().removeNode(getLabel());
             zombie.setLife(-getDamage());

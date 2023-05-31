@@ -1,6 +1,8 @@
 package strategy;
 
 public class Faster extends Strategy {
+    private int zombieNum = 33;
+
     public Faster() {
         super(1);
     }
@@ -22,7 +24,7 @@ public class Faster extends Strategy {
 
     @Override
     public int zombieKind(int time) {
-        return 0;
+        return zombieNum -- > 0 ? 0 : -1;
     }
 
     @Override

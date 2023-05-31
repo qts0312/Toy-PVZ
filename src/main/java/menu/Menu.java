@@ -6,10 +6,6 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -27,25 +23,18 @@ public class Menu extends Application {
         root.setVgap(80);
         root.setPadding(new Insets(20));
         root.setAlignment(Pos.CENTER);
-//        root.setBackground(new Background(new BackgroundImage(
-//                new Image(Objects.requireNonNull(getClass().getResourceAsStream("menu.jpg"))),
-//                null, null, null, null)));
 
-        Scene scene = new Scene(root, 1000, 750);
-        // scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("menu.css")).toExternalForm());
+        Scene scene = new Scene(root, 800, 600);
+        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("menu.css")).toExternalForm());
         primaryStage.setScene(scene);
 
-        Label label = new Label("Plants VS Zombies");
-
         Button start = new Button("Start");
-        start.setMinWidth(120);
         start.setOnMouseClicked(event -> {
             primaryStage.setScene(null);
             new Setting(primaryStage);
         });
 
         Button visitor = new Button("Visitor");
-        visitor.setMinWidth(120);
         visitor.setOnMouseClicked(event -> {
             primaryStage.setScene(null);
             new Game(primaryStage, Strategy.getInstance(0), Setting.UCards());
@@ -54,7 +43,6 @@ public class Menu extends Application {
         VBox buttons = new VBox(30, start, visitor);
         buttons.setAlignment(Pos.CENTER);
 
-        root.add(label, 0, 0);
         root.add(buttons, 0, 1);
 
         primaryStage.show();

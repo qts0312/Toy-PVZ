@@ -15,6 +15,8 @@ import java.util.Objects;
  * And controls the bullet's life, position, and display.
  */
 public abstract class Bullet {
+    public static final double Q = 0.75;
+
     public static final int COMMON = 0;
 
     private static Game game;
@@ -53,9 +55,9 @@ public abstract class Bullet {
         this.holder = holder;
 
         label = new Label();
-//        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(Url)), 100, 100, false, false);
-//        label.setGraphic(new ImageView(image));
-        label.setText("B");
+        Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("images/" + Url)), Pos.CELL_WIDTH * Q, (double) Pos.CELL_HEIGHT / 2 * Q, false, false);
+        label.setGraphic(new ImageView(image));
+
         label.setId("bullet");
     }
 

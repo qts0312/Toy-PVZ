@@ -1,0 +1,11 @@
+.root {
+    -fx-background-image: url("images/menu.png");
+}
+
+.button {
+    -fx-pref-width: 113px;
+    -fx-pref-height: 41px;
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-background-image: url("images/button.png");
+}

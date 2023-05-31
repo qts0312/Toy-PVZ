@@ -5,9 +5,10 @@ import util.Pos;
 
 public class Jump extends Zombie {
     public static final int LIFE = 100;
-    public static final int SPEED = 50;
-    public static final int DEMAGE = 20;
-    public static final String URL = "/resources/jump.gif";
+    public static final int SPEED = 2;
+    public static final int DEMAGE = 10;
+    public static final String URL = "jump.gif";
+    public static final String attackURL = "jump_attack.gif";
 
     private boolean canJump;
 
@@ -18,6 +19,7 @@ public class Jump extends Zombie {
                 DEMAGE,
                 time,
                 URL,
+                attackURL,
                 pos);
         canJump = true;
     }
@@ -30,11 +32,11 @@ public class Jump extends Zombie {
         if (plant != null) {
             if (canJump) {
                 getPos().setX(getPos().getX() - 150);
-                getLabel().setLayoutX(getPos().getX());
+                getLabel().setLayoutX(transX(getPos()));
                 canJump = false;
             }
             else{
-                getLabel().setLayoutX(getPos().getX());
+                getLabel().setLayoutX(transX(getPos()));
                 setCanMove(false);
                 plant.setLife(-getDamage());
                 if (plant.isDead()) {
@@ -44,7 +46,16 @@ public class Jump extends Zombie {
                 }
             }
         } else {
-            getLabel().setLayoutX(getPos().getX());
+            getLabel().setLayoutX(transX(getPos()));
+            setCanMove(true);
         }
+    }
+
+    public static double transX(Pos pos) {
+        return pos.getX() - 100;
+    }
+
+    public static double transY(Pos pos) {
+        return pos.getY() - 80;
     }
 }

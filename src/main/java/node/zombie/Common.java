@@ -9,9 +9,10 @@ import util.Pos;
  */
 public class Common extends Zombie {
     public static final int LIFE = 100;
-    public static final int SPEED = 50;
-    public static final int DAMAGE = 20;
-    public static final String URL = "zombie_common.png";
+    public static final int SPEED = 2;
+    public static final int DAMAGE = 10;
+    public static final String URL = "common.gif";
+    public static final String attackURL = "common_attack.gif";
 
     public Common(int time, Pos pos) {
         super(COMMON,
@@ -20,6 +21,7 @@ public class Common extends Zombie {
                 DAMAGE,
                 time,
                 URL,
+                attackURL,
                 pos);
     }
 
@@ -36,6 +38,16 @@ public class Common extends Zombie {
                 getGame().removeNode(plant.getLabel());
                 setCanMove(true);
             }
+        } else {
+            setCanMove(true);
         }
+    }
+
+    public static double transX(Pos pos) {
+        return pos.getX() - 45;
+    }
+
+    public static double transY(Pos pos) {
+        return pos.getY() - 12;
     }
 }

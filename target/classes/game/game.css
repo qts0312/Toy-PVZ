@@ -3,47 +3,35 @@
 }
 
 #card {
-    -fx-pref-width: 100px;
-    -fx-pref-height: 150px;
-    -fx-background-color: yellow;
+    -fx-pref-width: 80px;
+    -fx-pref-height: 80px;
 }
 
 #plant {
-    -fx-pref-width: 100px;
-    -fx-pref-height: 100px;
-    -fx-background-color: green;
+    -fx-pref-width: 81px;
+    -fx-pref-height: 98px;
 }
 
 #zombie {
-    -fx-pref-width: 100px;
-    -fx-pref-height: 100px;
-    -fx-background-color: red;
+    -fx-pref-width: 112px;
+    -fx-pref-height: 98px;
 }
 
 #sun {
-    -fx-pref-width: 100px;
-    -fx-pref-height: 100px;
-    -fx-background-color: orange;
+    -fx-pref-width: 40px;
+    -fx-pref-height: 49px;
 }
 
 #bullet {
-    -fx-pref-width: 100px;
-    -fx-pref-height: 100px;
-    -fx-background-color: blue;
+    -fx-pref-width: 81px;
+    -fx-pref-height: 49px;
 }
 
 #shovel {
-    -fx-pref-width: 100px;
-    -fx-pref-height: 150px;
-    -fx-background-color: brown;
-}
-
-#state {
-    -fx-pref-width: 1000px;
-    -fx-pref-height: 150px;
-    -fx-background-color: grey;
+    -fx-pref-width: 80px;
+    -fx-pref-height: 80px;
 }
 
 .root {
-    -fx-background-color: white;
+    -fx-background-image: url("images/field.jpg");
 }

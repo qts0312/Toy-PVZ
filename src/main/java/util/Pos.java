@@ -7,8 +7,8 @@ package util;
  */
 
 public class Pos {
-    public static final int CELL_WIDTH = 100;
-    public static final int CELL_HEIGHT = 100;
+    public static final int CELL_WIDTH = 81;
+    public static final int CELL_HEIGHT = 98;
 
     /*
      * Y |
@@ -56,8 +56,8 @@ public class Pos {
      * @return true if the cell is overlapped with the given position
      */
     public boolean overlap(Pos pos) {
-        return Math.abs(X - pos.getX()) < CELL_WIDTH &&
-                Math.abs(Y - pos.getY()) < CELL_HEIGHT;
+        return Math.abs(X - pos.getX()) < CELL_WIDTH / 4 &&
+                Math.abs(Y - pos.getY()) < CELL_HEIGHT / 4;
     }
 
     /*

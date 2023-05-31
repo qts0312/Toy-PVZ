@@ -1,0 +1,19 @@
+.root {
+    -fx-background-image: url("../menu/images/menu.png");
+}
+
+.button {
+    -fx-pref-width: 113px;
+    -fx-pref-height: 41px;
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-background-image: url("../menu/images/button.png");
+}
+
+.label {
+    -fx-pref-width: 300px;
+    -fx-pref-height: 100px;
+    -fx-text-fill: white;
+    -fx-font-size: 50px;
+    -fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 2 , 0 );
+}

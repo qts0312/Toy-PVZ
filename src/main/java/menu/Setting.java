@@ -53,6 +53,7 @@ public class Setting {
         this.stage = primaryStage;
 
         settingInit();
+        update();
 
         Scene scene = new Scene(root, 800, 600);
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("setting.css")).toExternalForm());
@@ -67,7 +68,7 @@ public class Setting {
         root.getChildren().add(node);
     }
 
-    private Label money;
+    private static Label money;
 
     private void settingInit() {
         // inputInit();
@@ -303,7 +304,7 @@ public class Setting {
         addNode(play, 650, 500);
     }
 
-    private void update() {
+    private static void update() {
         money.setText("Money: " + entry.money);
         Choose.ALLOW = entry.level;
     }

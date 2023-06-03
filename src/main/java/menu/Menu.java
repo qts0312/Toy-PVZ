@@ -15,8 +15,8 @@ import java.util.Objects;
 
 public class Menu extends Application {
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("Menu");
+    public void start(Stage primaryStage) {
+        primaryStage.setTitle("Toy PVZ");
 
         GridPane root = new GridPane();
         root.setHgap(10);

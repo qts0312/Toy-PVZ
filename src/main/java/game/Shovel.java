@@ -7,6 +7,13 @@ import javafx.scene.input.MouseEvent;
 import node.plant.Plant;
 import util.Pos;
 
+/**
+ * Shovel class
+ * <p>
+ *     Use shovel to remove an existing plant in the field.
+ *     Its design motivation is the same as Card.
+ * </p>
+ */
 public class Shovel extends Label {
     public Shovel(Game game) {
         super();
@@ -15,6 +22,12 @@ public class Shovel extends Label {
     }
 }
 
+/**
+ * ShovelHandler class
+ * <p>
+ *     Special event handler for Shovel.
+ * </p>
+ */
 class ShovelHandler implements EventHandler<MouseEvent> {
     private double X;
     private double Y;

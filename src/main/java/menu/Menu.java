@@ -13,9 +13,15 @@ import strategy.Strategy;
 
 import java.util.Objects;
 
+/**
+ * Menu class
+ * <p>
+ *     Main menu and the start point of the program.
+ * </p>
+ */
 public class Menu extends Application {
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) {
         primaryStage.setTitle("Menu");
 
         GridPane root = new GridPane();
@@ -37,7 +43,7 @@ public class Menu extends Application {
         Button visitor = new Button("Visitor");
         visitor.setOnMouseClicked(event -> {
             primaryStage.setScene(null);
-            new Game(primaryStage, Strategy.getInstance(0), Setting.UCards());
+            new Game(primaryStage, Objects.requireNonNull(Strategy.getInstance(0)), Setting.UCards());
         });
 
         VBox buttons = new VBox(30, start, visitor);

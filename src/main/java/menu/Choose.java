@@ -12,6 +12,12 @@ import strategy.Strategy;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * Choose class
+ * <p>
+ *     Menu for player to choose levels.
+ * </p>
+ */
 public class Choose {
     public static final int NUM = 3;
     public static int ALLOW;
@@ -20,7 +26,14 @@ public class Choose {
         ALLOW = 0;
     }
 
+    /**
+     * Choose constructor
+     * @param primaryStage the stage of UI
+     * @param cards the cards chosen to be used in this game
+     */
     public Choose(Stage primaryStage, ArrayList<Integer> cards) {
+        primaryStage.setTitle("Choose");
+
         GridPane root = new GridPane();
         root.setHgap(10);
         root.setVgap(80);
@@ -32,13 +45,13 @@ public class Choose {
         primaryStage.setScene(scene);
 
         for (int i = 0; i < NUM; ++ i) {
-            Button button = new Button("Choose" + i);
+            Button button = new Button("Level " + i);
             button.setMinWidth(120);
-            Integer integer = i;
+            int integer = i;
             button.setOnMouseClicked(event -> {
                 if (integer <= ALLOW) {
                     primaryStage.setScene(null);
-                    new Game(primaryStage, Strategy.getInstance(integer), cards);
+                    new Game(primaryStage, Objects.requireNonNull(Strategy.getInstance(integer)), cards);
                 }
             });
             root.add(button, 0, i);

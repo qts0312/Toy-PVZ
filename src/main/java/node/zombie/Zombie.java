@@ -12,8 +12,10 @@ import java.util.Objects;
 
 /**
  * Zombie class
- * This class is used to record the parameters of a zombie.
- * And controls the zombie's life, position, and display.
+ * <p>
+ *      This class is used to record the parameters of a zombie.
+ *      And controls the zombie's life, position, and display.
+ * </p>
  */
 public abstract class Zombie {
     public static final int COMMON = 0;
@@ -37,9 +39,9 @@ public abstract class Zombie {
 
     private int life;
     private boolean canMove;
-    private Label label;
-    private Tooltip tooltip;
-    private Pos pos;
+    private final Label label;
+    private final Tooltip tooltip;
+    private final Pos pos;
     private Image image;
     private Image attackImage;
 
@@ -64,6 +66,7 @@ public abstract class Zombie {
         attackUrl = "images/" + attackUrl;
         switch (kind) {
             case COMMON:
+            case STRONG:
                 image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(Url)), 126, 110, false, false);
                 attackImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream(attackUrl)), 126, 110, false, false);
                 break;
@@ -71,13 +74,9 @@ public abstract class Zombie {
                 image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(Url)), 270, 180, false, false);
                 attackImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream(attackUrl)), 270, 180, false, false);
                 break;
-            case STRONG:
-                image = new Image(Objects.requireNonNull(getClass().getResourceAsStream(Url)), 126, 110, false, false);
-                attackImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream(attackUrl)), 126, 110, false, false);
-                break;
         }
         label.setGraphic(new ImageView(image));
-//        label.setText(forName(kind));
+
         label.setId("zombie");
 
         tooltip = new Tooltip();
@@ -104,10 +103,6 @@ public abstract class Zombie {
 
     public int getTime() {
         return time;
-    }
-
-    public boolean getCanMove() {
-        return canMove;
     }
 
     public int getLine() {

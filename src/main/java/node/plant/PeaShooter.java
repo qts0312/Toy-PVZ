@@ -4,10 +4,7 @@ import node.bullet.Bullet;
 import util.Manager;
 import util.Pos;
 
-/**
- * PeaShooter class
- * Pea shooter extends the plant.
- */
+
 public class PeaShooter extends Plant {
     public static final int LIFE = 100;
     public static final int COST = 100;

@@ -28,6 +28,13 @@ import util.Pos;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * Game class
+ * <p>
+ *     Core module of the game,
+ *     containing the core logic and taking responsibility for most of the game experience.
+ * </p>
+ */
 public class Game {
     private final Stage stage;
     public Pane root;
@@ -41,7 +48,15 @@ public class Game {
     public int[] numLine = {0, 0, 0, 0, 0, 0};
     private final ArrayList<Integer> cards;
 
+    /**
+     * Game constructor.
+     * @param primaryStage the stage of UI
+     * @param strategy the strategy of this game
+     * @param cards the cards chosen to be used in this game
+     */
     public Game(Stage primaryStage, Strategy strategy, ArrayList<Integer> cards) {
+        primaryStage.setTitle("Level " + strategy.getLevel());
+
         root = new Pane();
         this.strategy = strategy;
         this.stage = primaryStage;
@@ -59,10 +74,6 @@ public class Game {
         Scene scene = new Scene(root, 1100, 600);
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("game.css")).toExternalForm());
         stage.setScene(scene);
-
-//        state = new Pane();
-//        state.setId("state");
-//        addNode(state, 0, 0);
         
         cardsInit();
         shovelInit();
@@ -83,8 +94,8 @@ public class Game {
         root.getChildren().remove(node);
     }
 
-    private int randomGenerator(int min, int max) {
-        return (int) (Math.random() * (max - min + 1) + min);
+    private int randomGenerator(int max) {
+        return (int) (Math.random() * (max + 1) + 0);
     }
 
     private boolean clockOn(int clock, int delta) {
@@ -137,18 +148,26 @@ public class Game {
     public static final int COLUMNS = 9;
     public static final int ROWS = 5;
 
+    /*
+    Most complex part of the codes.
+    We choose 0.1 s as one tick.
+     */
     private void systemRoutine() {
         timeline = new Timeline(new KeyFrame(Duration.millis(100), e -> {
+            // Win or lose check
             winOrLose();
+
+            // Generate new sunshine
             if (clockOn(strategy.sunTick(clock), 0)) {
-                int x = randomGenerator(0, COLUMNS - 1);
-                int y = randomGenerator(0, ROWS - 1);
+                int x = randomGenerator(COLUMNS - 1);
+                int y = randomGenerator(ROWS - 1);
 
                 sun.createSuns(x * Pos.CELL_WIDTH + LEFT, y * Pos.CELL_HEIGHT + TOP);
             }
 
+            // Generate new zombie
             if (clockOn(strategy.zombieTick(clock), 0)) {
-                int y = randomGenerator(0, 4);
+                int y = randomGenerator(4);
                 int kind = strategy.zombieKind(clock);
                 Zombie zombie = Zombie.getInstance(kind, clock, new Pos(LEFT + Pos.CELL_WIDTH * COLUMNS, y * Pos.CELL_HEIGHT + TOP));
 
@@ -168,6 +187,7 @@ public class Game {
                 }
             }
 
+            // Zombies move and attack
             for (Zombie z: zombies.getAll()) {
                 if (clockOn(1, 0)) {
                     z.move();
@@ -175,6 +195,7 @@ public class Game {
                 }
             }
 
+            // Plants attack
             for (Plant p: plants.getAll()) {
                 switch (p.getKind()) {
                     case Plant.PEASHOOTER:
@@ -197,6 +218,7 @@ public class Game {
                 }
             }
 
+            // Bullets move and attack
             for (Bullet b: bullets.getAll()) {
                 if (!b.isShown()) {
                     addNode(b.getLabel(), b.getPos().getX() + (double) Pos.CELL_WIDTH / 2, b.getPos().getY() + (double) Pos.CELL_HEIGHT / 10);
@@ -207,6 +229,7 @@ public class Game {
                 }
             }
 
+            // Update system information
             clock ++;
             sunIndicator.setProgress((double) sun.getSun() / strategy.sunBound());
             sunCounter.setText(String.valueOf(sun.getSun()));
@@ -256,7 +279,7 @@ public class Game {
         next.setId("next");
         next.setOnAction(e -> {
             stage.setScene(null);
-            new Game(stage, Strategy.getInstance(strategy.getLevel() + 1), cards);
+            new Game(stage, Objects.requireNonNull(Strategy.getInstance(strategy.getLevel() + 1)), cards);
         });
 
         win.getChildren().addAll(label, ret, next);
@@ -299,15 +322,5 @@ public class Game {
 
         stage.setScene(scene);
         stage.show();
-    }
-
-    private void debug(int cycle) {
-        if (clockOn(cycle, 0)){
-            System.out.println("clock: " + clock);
-            System.out.println("sun: " + sun.getSun());
-            System.out.println("plants: " + plants.getAll().size());
-            System.out.println("zombies: " + zombies.getAll().size());
-            System.out.println("bullets: " + bullets.getAll().size());
-        }
     }
 }

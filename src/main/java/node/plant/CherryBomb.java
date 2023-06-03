@@ -1,12 +1,10 @@
 package node.plant;
 
-import javafx.scene.image.Image;
 import node.zombie.Zombie;
 import util.Manager;
 import util.Pos;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class CherryBomb extends Plant {
 public static final int LIFE = 0;
@@ -16,8 +14,6 @@ public static final int LIFE = 0;
     public static final int RANGE = 0;
     public static final String URL = "cherrybomb.gif";
 
-    private Image bombImage;
-
     public CherryBomb(int time, Pos pos) {
         super(CHERRYBOMB,
                 LIFE,
@@ -26,7 +22,6 @@ public static final int LIFE = 0;
                 time,
                 URL,
                 pos);
-//        bombImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("images/cherrybomb_bomb.gif")), Pos.CELL_WIDTH * 2, Pos.CELL_HEIGHT * 2, false, false);
     }
 
     @Override
@@ -36,8 +31,6 @@ public static final int LIFE = 0;
 
     @Override
     public void routine(int time) {
-//        getLabel().setGraphic(new javafx.scene.image.ImageView(bombImage));
-
         ArrayList<Zombie> zombies = getGame().zombies.getAll();
         Pos pos = getPos();
 

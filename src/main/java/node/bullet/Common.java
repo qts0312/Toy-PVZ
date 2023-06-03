@@ -5,10 +5,7 @@ import node.zombie.Zombie;
 import util.Manager;
 import util.Pos;
 
-/**
- * Common class
- * Common extends bullet
- */
+
 public class Common extends Bullet{
     public static final int SPEED = 30;
     public static final int DAMAGE = 10;

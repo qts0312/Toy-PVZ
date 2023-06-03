@@ -37,10 +37,12 @@ public class Setting {
 
 
     public Setting(Stage primaryStage) {
+        primaryStage.setTitle("Setting");
         root = new Pane();
         this.stage = primaryStage;
 
         settingInit();
+        update();
 
         Scene scene = new Scene(root, 800, 600);
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("setting.css")).toExternalForm());

@@ -1,5 +1,11 @@
 package strategy;
 
+/**
+ * Strategy class
+ * <p>
+ *     Game strategy of levels,
+ * </p>
+ */
 public abstract class Strategy {
     public static final int DEFAULT = 0;
     public static final int FASTER = 1;

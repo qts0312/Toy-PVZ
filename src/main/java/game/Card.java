@@ -6,9 +6,20 @@ import javafx.scene.input.MouseEvent;
 import node.plant.Plant;
 import util.Pos;
 
+/**
+ * Card class
+ * <p>
+ *     Label for player to choose and create a new plant into field.
+ *     To provide a uniform abstraction, we implement Card as a subclass of javafx.scene.control.Label.
+ * </p>
+ */
 public class Card extends Label {
-    public static final int CARDSNUM = 5;
 
+    /**
+     * Card constructor.
+     * @param game pointer to the game
+     * @param kind kind of the plant this card representing
+     */
     public Card(Game game, int kind) {
         super();
 
@@ -16,6 +27,8 @@ public class Card extends Label {
             event.consume();
             Plant plant = Plant.getInstance(kind, game.clock, null);
             Label label;
+
+            // Install special event handler
             if (plant != null && game.sun.afford(plant)) {
                 label = plant.getLabel();
                 label.addEventHandler(MouseEvent.ANY, new Handler(game, plant));
@@ -25,6 +38,12 @@ public class Card extends Label {
     }
 }
 
+/**
+ * Handler class
+ * <p>
+ *     Special event handler for Card.
+ * </p>
+ */
 class Handler implements EventHandler<MouseEvent> {
     private double X;
     private double Y;

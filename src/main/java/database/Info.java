@@ -3,14 +3,22 @@ package database;
 import java.sql.*;
 import java.util.Objects;
 
-/*
- * To use this module, you need to create MySQL database locally.
+
+/**
+ * Information for players.
+ * <p>
+ *     To maintain players' information in MySQL database, this class
+ *     provides basic primitives for other modules to interact with database.
+ * </p>
+ * <p>
+ *     To activate this class, you need to have MySQL locally.
+ * </p>
  */
 public class Info {
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final String URL = "jdbc:mysql://localhost:3306/pvz_db";
     private static final String USER = "root";
-    private static final String PASSWORD = "password";
+    private static final String PASSWORD = "pku170730";
 
     private static Connection conn;
 
@@ -31,6 +39,13 @@ public class Info {
         }
     }
 
+    /**
+     * Entry class
+     * <p>
+     *     Entry in database for one player,
+     *     collecting information as user id, level, money and plants you owned.
+     * </p>
+     */
     public static class Entry {
         public String userId;
         public int level;
@@ -70,6 +85,11 @@ public class Info {
         }
     }
 
+    /**
+     * Create a new entry and insert it into database.
+     * To simplify args, caller need to pass a Entry.
+     * @param entry the new entry to insert
+     */
     public static void createEntry(Entry entry) {
         openDb();
 
@@ -94,6 +114,11 @@ public class Info {
         }
     }
 
+    /**
+     * Get an entry by user id.
+     * @param userId key to identify an entry
+     * @return entry with the user id
+     */
     public static Entry getEntry(String userId) {
         openDb();
         Entry ret = null;
@@ -127,6 +152,10 @@ public class Info {
         return ret;
     }
 
+    /**
+     * Update entry into given content.
+     * @param entry providing both the key and value for an entry
+     */
     public static void updateEntry(Entry entry) {
         if (Objects.equals(entry.userId, "default"))
             return;

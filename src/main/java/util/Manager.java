@@ -6,8 +6,10 @@ import java.util.function.Function;
 
 /**
  * Manager class
- * Manage a set of objects. In this situation, we use it to manage a set of
- * plants, zombies, bullets and so on.
+ * <p>
+ *      Manage a set of objects. In this situation, we use it to manage a set of
+ *      plants, zombies, bullets and so on.
+ * </p>
  * @param <K> the type of the key
  * @param <V> the type of the value
  */
@@ -17,8 +19,10 @@ public class Manager<K, V> {
 
     /**
      * Key class
-     * This class is used as the key of the hashmap in Manager class.
-     * It is normally used in our project.
+     * <p>
+     *      This class is used as the key of the hashmap in Manager class.
+     *      It is normally used in our project.
+     * </p>
      */
     public static class Key {
         private static final int ADD = 36000;
@@ -88,17 +92,5 @@ public class Manager<K, V> {
 
     public ArrayList<V> getAll() {
         return new ArrayList<>(map.values());
-    }
-
-    /*
-     * Debug method for development
-     */
-    private void debug(K key, V value) {
-        if (key != null) {
-            System.out.println("Key: " + key.toString());
-        }
-        if (value != null) {
-            System.out.println("Value: " + value.toString());
-        }
     }
 }

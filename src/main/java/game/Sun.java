@@ -9,12 +9,20 @@ import util.Pos;
 import java.util.BitSet;
 import java.util.Objects;
 
+/**
+ * Sun class
+ * <p>
+ *     Sun system for the game.
+ *     Each game will get an instance of this class to create sunshine label
+ *     and maintain its volume.
+ * </p>
+ */
 public class Sun {
     public static final int SUNVALUE = 100;
 
     private int sun;
     private final Game game;
-    private BitSet suns;
+    private final BitSet suns;
 
     public Sun(Game game) {
         this.game = game;
@@ -60,6 +68,9 @@ public class Sun {
         suns.set(index(x, y), true);
     }
 
+    /*
+    Can you afford this plant?s
+     */
     public boolean afford(Plant plant) {
         return sun >= plant.getCost();
     }

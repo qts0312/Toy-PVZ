@@ -2,8 +2,10 @@ package util;
 
 /**
  * Pos class
- * Position of a cell in the play field.
- * Besides, we record parameters of the cell.
+ * <p>
+ *      Position of a cell in the play field.
+ *      Besides, we record parameters of the cell.
+ * </p>
  */
 
 public class Pos {

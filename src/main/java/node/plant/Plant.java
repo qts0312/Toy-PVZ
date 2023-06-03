@@ -12,8 +12,10 @@ import java.util.Objects;
 
 /**
  * Plant class
- * This class is used to record the parameters of a plant.
- * And controls the plant's life, position, and display.
+ * <p>
+ *      This class is used to record the parameters of a plant.
+ *      And controls the plant's life, position, and display.
+ * </p>
  */
 public abstract class Plant {
     public static final double Q = 0.75;
@@ -36,7 +38,9 @@ public abstract class Plant {
 
     /**
      * Attack class
-     * This class is used to record the attack parameters of a plant.
+     * <p>
+     *      This class is used to record the attack parameters of a plant.
+     * </p>
      */
     public static class Attack {
         private final int damage;
@@ -68,8 +72,8 @@ public abstract class Plant {
 
     private int time;
     private int life;
-    private Label label;
-    private Tooltip tooltip;
+    private final Label label;
+    private final Tooltip tooltip;
     private Pos pos;
 
     public Plant (int kind,
@@ -87,13 +91,13 @@ public abstract class Plant {
         this.pos = pos;
 
         label = new Label();
-        Image image = null;
-        if (kind != CHERRYBOMB)
+        Image image;
+        if (kind != CHERRYBOMB) // Special treat for cherrybomb
             image = new Image(Objects.requireNonNull(Plant.class.getResourceAsStream("images/" + Url)), Pos.CELL_WIDTH * Q, Pos.CELL_HEIGHT * Q, false, false);
         else
             image = new Image(Objects.requireNonNull(Plant.class.getResourceAsStream("images/" + Url)), Pos.CELL_WIDTH * Q, Pos.CELL_HEIGHT * 0.5, false, false);
         label.setGraphic(new ImageView(image));
-//        label.setText(forName(kind));
+
         label.setId("plant");
 
         tooltip = new Tooltip();

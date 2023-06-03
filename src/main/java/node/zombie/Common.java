@@ -3,10 +3,7 @@ package node.zombie;
 import node.plant.Plant;
 import util.Pos;
 
-/**
- * Common class
- * Common extends zombie
- */
+
 public class Common extends Zombie {
     public static final int LIFE = 100;
     public static final int SPEED = 2;

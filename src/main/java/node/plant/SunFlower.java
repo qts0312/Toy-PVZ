@@ -2,10 +2,7 @@ package node.plant;
 
 import util.Pos;
 
-/**
- * WallNut class
- * Wall nut extends the plant.
- */
+
 public class SunFlower extends Plant {
     public static final int LIFE = 100;
     public static final int COST = 50;

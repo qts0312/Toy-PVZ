@@ -1,7 +1,7 @@
 package strategy;
 
 public class Test extends Strategy {
-    private int[] zombieNum = {12, 12, 7};
+    private final int[] zombieNum = {12, 12, 7};
 
     public Test() {
         super(2);

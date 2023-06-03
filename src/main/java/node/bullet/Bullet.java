@@ -11,8 +11,10 @@ import java.util.Objects;
 
 /**
  * Bullet class
- * This class is used to record the parameters of a bullet.
- * And controls the bullet's life, position, and display.
+ * <p>
+ *      This class is used to record the parameters of a bullet.
+ *      And controls the bullet's life, position, and display.
+ * </p>
  */
 public abstract class Bullet {
     public static final double Q = 0.75;
@@ -103,12 +105,10 @@ public abstract class Bullet {
     }
 
     public static Bullet getInstance(int kind, int time, Pos pos, Plant holder) {
-        switch (kind) {
-            case COMMON:
-                return new Common(time, pos, holder);
-            default:
-                return null;
+        if (kind == COMMON) {
+            return new Common(time, pos, holder);
         }
+        return null;
     }
 
     public abstract void routine();

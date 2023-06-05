@@ -307,9 +307,4 @@ public class Setting {
         cards.add(-1);
         return cards;
     }
-
-    private void debug() {
-        for (int i: kinds)
-            System.out.println(i);
-    }
 }

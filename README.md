@@ -18,7 +18,10 @@ For players:
 * There are some differences between our game and the official version, some are for simplification and some are for fun.
 * We don't promise that our game is bug-free, but we will try our best to fix them.
 
+Screenshot of the game:
 ![gameview](gameview.png)
+
+Video of the game: We will upload it later.
 
 ## Modules
 
@@ -41,8 +44,17 @@ Till now, we have two branches:
 
 ## Problems
 
-There are several problems, which need my co-workers to solve.
+There are several problems, which need to solve.
 * As the animation is implemented by `GIF`, not image by image, we can't handle animation flexibly. So the animation is not great enough(without squash attack, cherrybomb boom), but zombie attack exists.
 * For simplification, sunshine is not dropping.
 
-*To solve the first problem, it's necessary to make animation image by image, which means a big modification of the code now.*
+## Contributions
+
+As a course project of Java, it is implemented by our team. Our team is composed of 4 members, our names and contributions are as follows:
+
+* **Qiao Tianshuo**: Leader of the team, proposes the structure of the project, takes responsibility for maintaining this repository and writes some basic codes.
+* **Wu Yutong**: Imports `javaFX` framework, makes efforts to the game view and UI design, collects UI resources.
+* **Yuan Yuqing**: Implements the game logic and installs the database.
+* **Gao Mingyu**: Game testing and takes responsibility for the playability of the game.
+
+Since we are living in the same dormitory, we communicate offline and only Qiao Tianshuo has the access to this repository at the beginning. But as a burst of exams is coming, all team members make commits on this repository distributed.

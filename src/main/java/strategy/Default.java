@@ -34,7 +34,7 @@ public class Default extends Strategy {
 
     @Override
     public int totalTime() {
-        return 600;
+        return 800;
     }
 
     @Override

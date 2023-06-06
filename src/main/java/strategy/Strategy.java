@@ -3,7 +3,7 @@ package strategy;
 /**
  * Strategy class
  * <p>
- *     Game strategy of levels,
+ *     Game strategy of levels.
  * </p>
  */
 public abstract class Strategy {

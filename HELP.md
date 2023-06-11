@@ -21,3 +21,5 @@ CREATE TABLE info (
     PRIMARY KEY (user_id)
 );
 ```
+
+To get the latest version of the project, you can view https://github.com/qts0312/Toy-PVZ. We will fix bugs and add new features in the future.
